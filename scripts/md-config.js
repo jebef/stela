@@ -8,7 +8,6 @@ function rule(handler) {
 
 /**
  * Formatting plugin for markdown-it parser
- * @param {import('markdown-it')} md
  */
 function stela(md) {
   /* Headers */
