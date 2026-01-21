@@ -1,0 +1,12 @@
+[
+  {
+    "id": "hello-world",
+    "title": "Hello World",
+    "date": "2026-01-20"
+  },
+  {
+    "id": "second-post",
+    "title": "Second Post",
+    "date": "2026-01-19"
+  }
+]

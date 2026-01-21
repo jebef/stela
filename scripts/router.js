@@ -1,3 +1,10 @@
+const md = markdownit();
+
+async function fetchPosts() {
+  const response = await fetch('./posts/index.json');
+  return response.json();
+}
+
 async function router() {
   const hash = window.location.hash.slice(1) || '';
   const app = document.getElementById('app');
@@ -12,27 +19,32 @@ async function router() {
 
   // Static routes
   const routes = {
-    '': renderHome,
-    'about': () => '<h1>About</h1>',
+    '': renderHome
   };
 
   const render = routes[hash] ?? routes[''];
   app.innerHTML = await render();
 }
 
-function renderHome() {
+async function renderHome() {
+  const posts = await fetchPosts();
+  const postLinks = posts
+    .map(post => `<li><a href="#posts/${post.id}">${post.title}</a> <span>${post.date}</span></li>`)
+    .join('\n');
+
   return `
     <h1>Posts</h1>
-    <ul>
-      <li><a href="#posts/hello-world">Hello World</a></li>
-      <li><a href="#posts/second-post">Second Post</a></li>
-    </ul>
+    <ul>${postLinks}</ul>
   `;
 }
 
 async function renderPost(postId) {
-  // Later: fetch markdown file based on postId
-  return `<article><h1>${postId}</h1></article>`;
+  const response = await fetch(`./posts/${postId}.md`);
+  if (!response.ok) {
+    return '<h1>Post not found</h1>';
+  }
+  const markdown = await response.text();
+  return `<article class="post">${md.render(markdown)}</article>`;
 }
 
 window.addEventListener('hashchange', router);

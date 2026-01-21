@@ -3,38 +3,79 @@
   box-sizing: border-box;
 }
 
-/* 2. Remove default margin */
+/* 2. Remove default margin and padding */
 * {
   margin: 0;
+  padding: 0;
 }
 
 body {
-  /* 4. Maintain exact font dimensions */
-  line-height: 1;
-  /* 5. Improve text rendering */
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
 }
 
-/* 6. Improve media defaults */
+/* Nav aligned to grid */
+nav {
+  padding: var(--cell-height) var(--cell-width);
+}
+
+nav a {
+  margin-right: calc(var(--cell-width) * 2);
+}
+
+/* Main content aligned to grid */
+main {
+  padding: var(--cell-height) var(--cell-width);
+}
+
+/* Typography aligned to grid - each element takes up full line heights */
+h1 {
+  font-size: var(--font-size-base);
+  line-height: var(--cell-height);
+  margin-bottom: var(--cell-height);
+}
+
+h2, h3, h4, h5, h6 {
+  font-size: var(--font-size-base);
+  line-height: var(--cell-height);
+  margin-bottom: var(--cell-height);
+}
+
+p {
+  line-height: var(--cell-height);
+  margin-bottom: var(--cell-height);
+}
+
+ul, ol {
+  line-height: var(--cell-height);
+  margin-bottom: var(--cell-height);
+  padding-left: calc(var(--cell-width) * 2);
+}
+
+li {
+  line-height: var(--cell-height);
+}
+
+/* Improve media defaults */
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
 }
 
-/* 7. Inherit fonts for form controls */
+/* Inherit fonts for form controls */
 input, button, textarea, select {
   font: inherit;
 }
 
-/* 8. Avoid text overflows */
+/* Avoid text overflows */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-/* 9. Improve line wrapping */
-p {
-  text-wrap: pretty;
-}
-h1, h2, h3, h4, h5, h6 {
-  text-wrap: balance;
+/* Links */
+a {
+  color: var(--color-link);
 }
