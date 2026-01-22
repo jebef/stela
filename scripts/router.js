@@ -1,9 +1,9 @@
 /**
- * Fetch a list of posts from the index 
+ * Fetch the post index 
  * 
- * @returns Promise - list of posts or null
+ * @returns Promise - post index or null
  */
-async function fetchPosts() {
+async function fetchPostIndex() {
   try {
     const res = await fetch("./../posts/index.json");
     if (!res.ok) {
@@ -16,10 +16,31 @@ async function fetchPosts() {
   }
 }
 
+/**
+ * Fetch a post 
+ * 
+ * @param id - post identifier 
+ * @returns Promise - post or null 
+ */
+async function fetchPost(id) {
+  try {
+    const res = fetch(`./../posts/${id}/index.md`);
+
+    // TODO: parse markdown and return JSON object 
+    
+  } catch (err) {
+    console.error(`Failed to fetch post ${id}: ${err.message}`);
+    return null;
+  }
+}
+
+
+/**
+ * Debugging 
+ */
 async function main() {
-  // debugging 
-  const posts = await fetchPosts();
-  console.log(posts);
+  const postIndex = await fetchPostIndex();
+  console.log(postIndex);
 }
 
 main();
