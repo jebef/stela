@@ -1,12 +1,11 @@
-[
-  {
-    "id": "hello-world",
-    "title": "Hello World",
-    "date": "2026-01-20"
-  },
-  {
-    "id": "second-post",
-    "title": "Second Post",
-    "date": "2026-01-19"
-  }
-]
+{
+  "posts": [
+    {
+      "id": "0000",
+      "title": "Hello World",
+      "date-created": "2026-01-21",
+      "date-last-updated": null,
+      "hero-img": null
+    }
+  ]
+}

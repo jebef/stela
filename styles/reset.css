@@ -1,81 +1,47 @@
-/* 1. Use a more-intuitive box-sizing model */
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* 2. Remove default margin and padding */
-* {
+*:not(dialog) {
   margin: 0;
-  padding: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
 }
 
 body {
-  font-family: var(--font-mono);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height);
-  color: var(--color-text);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Nav aligned to grid */
-nav {
-  padding: var(--cell-height) var(--cell-width);
-}
-
-nav a {
-  margin-right: calc(var(--cell-width) * 2);
-}
-
-/* Main content aligned to grid */
-main {
-  padding: var(--cell-height) var(--cell-width);
-}
-
-/* Typography aligned to grid - each element takes up full line heights */
-h1 {
-  font-size: var(--font-size-base);
-  line-height: var(--cell-height);
-  margin-bottom: var(--cell-height);
-}
-
-h2, h3, h4, h5, h6 {
-  font-size: var(--font-size-base);
-  line-height: var(--cell-height);
-  margin-bottom: var(--cell-height);
-}
-
-p {
-  line-height: var(--cell-height);
-  margin-bottom: var(--cell-height);
-}
-
-ul, ol {
-  line-height: var(--cell-height);
-  margin-bottom: var(--cell-height);
-  padding-left: calc(var(--cell-width) * 2);
-}
-
-li {
-  line-height: var(--cell-height);
-}
-
-/* Improve media defaults */
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
 }
 
-/* Inherit fonts for form controls */
 input, button, textarea, select {
   font: inherit;
 }
 
-/* Avoid text overflows */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-/* Links */
-a {
-  color: var(--color-link);
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+#root, #__next {
+  isolation: isolate;
 }
