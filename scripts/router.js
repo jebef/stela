@@ -1,9 +1,12 @@
+// global refernece to markdown parser 
+const md = markdownit();
+
 /**
  * Fetch the post index 
  * 
  * @returns Promise - post index or null
  */
-async function fetchPostIndex() {
+async function fetchIndex() {
   try {
     const res = await fetch("./../posts/index.json");
     if (!res.ok) {
@@ -20,29 +23,36 @@ async function fetchPostIndex() {
  * Fetch a post 
  * 
  * @param id - post identifier 
- * @returns Promise - post or null 
+ * @returns Promise - md text or null 
  */
 async function fetchPost(id) {
   try {
-    const res = fetch(`./../posts/${id}/index.md`);
+    const res = await fetch(`./../posts/${id}/index.md`);
 
-    // TODO: parse markdown and return JSON object 
-    
+    if (!res.ok) {
+      throw new Error(`HTTP Error: ${res.status}`);
+    }
+
+    return res.text();
   } catch (err) {
     console.error(`Failed to fetch post ${id}: ${err.message}`);
     return null;
   }
 }
 
-
 /**
  * Debugging 
  */
 async function main() {
-  const postIndex = await fetchPostIndex();
-  console.log(postIndex);
+  const index = await fetchIndex();
+  console.log(index);
+
+  const p1 = await fetchPost(index.posts[0].id);
+
+  const body = document.querySelector("body");
+  body.innerHTML = md.render(p1);
+
+  return;
 }
 
 main();
-
-
