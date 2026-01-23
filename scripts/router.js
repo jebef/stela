@@ -49,8 +49,8 @@ async function main() {
 
   const p1 = await fetchPost(index.posts[0].id);
 
-  const grid = document.querySelector(".grid");
-  grid.innerHTML = md.render(p1);
+  const content = document.querySelector(".content");
+  content.innerHTML = md.render(p1);
 
   return;
 }
