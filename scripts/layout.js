@@ -1,10 +1,6 @@
 // root reference 
 const root = document.documentElement;
 
-// default font size 
-const fsize = parseInt(getComputedStyle(root).getPropertyValue('--font-sm').replace('px', ''));
-console.log(fsize);
-
 /**
  * Compute font width - css ch 
  */
@@ -34,8 +30,9 @@ function updateGridDims() {
   // capture grid reference 
   const grid = document.querySelector('.grid');
 
-  // compute font width 
+  // get font dims 
   const ch = getFontWidth(grid);
+  const fsize = parseInt(getComputedStyle(root).getPropertyValue('--font-sm').replace('px', '')); 
 
   // update width 
   const vw = window.innerWidth;
@@ -44,7 +41,7 @@ function updateGridDims() {
 
   // update height 
   const vh = window.innerHeight;
-  const h = Math.floor(vh * ghp / ch) * ch;
+  const h = Math.floor(vh * ghp / fsize) * fsize;
   root.style.setProperty('--grid-height', `${h}px`);
 
   return;
