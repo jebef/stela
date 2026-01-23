@@ -1,0 +1,19 @@
+:root {
+  --font: 'IBM Plex Mono';
+  --font-sm: 16px;
+  --font-md: 24px;
+  --font-lg: 48px;
+
+  --grid-width: 100vw;
+  --grid-height: 100vh;
+
+  --grid-width-percent: .6;
+  --grid-height-percent: .9;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --grid-width-percent: .9;
+    --grid-height-percent: .9;
+  }
+}

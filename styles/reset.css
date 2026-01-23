@@ -1,5 +1,5 @@
 /*
-  Josh's Custom CSS Reset
+  Heavily inspired by Josh Comeau's reset: 
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
@@ -11,14 +11,8 @@
   margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
-}
-
 body {
-  line-height: 1.5;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -38,6 +32,7 @@ p, h1, h2, h3, h4, h5, h6 {
 p {
   text-wrap: pretty;
 }
+
 h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
