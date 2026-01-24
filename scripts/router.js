@@ -50,7 +50,11 @@ async function main() {
   const p1 = await fetchPost(index.posts[0].id);
 
   const content = document.querySelector(".content");
-  content.innerHTML = md.render(p1);
+  let html = md.render(p1);
+
+  const postPath = `./../posts/${index.posts[0].id}/`;
+  html = html.replace(/src="\.\/([^"]+)"/g, `src="${postPath}$1"`);
+  content.innerHTML = html;
 
   return;
 }

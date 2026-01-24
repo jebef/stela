@@ -1,9 +1,30 @@
+:root {
+  --font-name: 'IBM Plex Mono', monospace;
+  --font-sm: 16px;
+  --font-md: 32px;
+  --font-lg: 48px;
+
+  --max-width: 900px;
+}
+
+html,
 body {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: white;
+  font-family: var(--font-name);
+  font-size: var(--font-sm);
+}
+
+.sizer {
+  max-width: var(--max-width);
+  background-color: red;
+}
+
+.content {
+  width: round(down, 100%, 1ch);
+  /* padding: 0 2ch;  */
+  background-color: aqua;
 }
 
 h1 {
@@ -16,33 +37,4 @@ h2 {
 
 h3, h4, h5, h6 {
   font-size: var(--font-sm);
-}
-
-.grid {
-  position: relative;
-  display: grid;
-  width: var(--grid-width);
-  height: var(--grid-height);
-
-  font-family: var(--font);
-  font-size: var(--font-sm);
-
-  grid-template-rows: repeat(auto-fill, 1em);
-  grid-template-columns: repeat(auto-fill, 1ch);
-
-  background-color: rgba(38, 230, 255, .25);
-}
-
-.content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 1em 2ch;
-}
-
-@media (max-width: 768px) {
-  .grid {
-    min-height: 80vh;
-  }
 }
