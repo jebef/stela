@@ -14,6 +14,10 @@ h2 {
   font-size: var(--font-md);
 }
 
+h3, h4, h5, h6 {
+  font-size: var(--font-sm);
+}
+
 .grid {
   position: relative;
   display: grid;

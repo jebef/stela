@@ -1,0 +1,5 @@
+2026-01-23 
+Post index page idea - hero image rendered in ascii. Need to write a simple image data tool - 
+render low res image to a hidden canvas, capture image data, use image data to render as ascii. 
+Add on-hover effect, characters change color in a natural wave-like motion. 
+
