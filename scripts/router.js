@@ -1,8 +1,15 @@
-// markdown parser 
+// markdown parser
 const md = markdownit();
 
-// content element reference, where we render posts 
+// element references
 const contentRef = document.querySelector(".content");
+const headerRef = document.querySelector(".header");
+
+// routes
+const routes = {
+  '/': renderIndex,
+  '/posts/:id': renderPost
+};
 
 /**
  * Fetch the post index 
@@ -63,17 +70,44 @@ function parsePost(markdown) {
 }
 
 /**
- * Render a post to the content element 
- * 
- * @param id - unique post identifier 
+ * Render post index to the content element
+ */
+async function renderIndex() {
+  contentRef.innerHTML = "";
+  const data = await fetchIndex();
+
+  if (!data) {
+    contentRef.innerHTML = "<p>Failed to load posts.</p>";
+    return;
+  }
+
+  const list = document.createElement("ul");
+  list.className = "post-list";
+
+  data.posts.forEach(post => {
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = `#/posts/${post.id}`;
+    link.textContent = post.title;
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+
+  contentRef.appendChild(list);
+  return;
+}
+
+/**
+ * Render a post to the content element
+ *
+ * @param id - unique post identifier
  */
 async function renderPost(id) {
+  contentRef.innerHTML = "";
   const post = await fetchPost(id);
 
   if (!post) {
-    const errorMessage = document.createElement("p");
-    errorMessage.textContent = "An error occurred, please try again.";
-    contentRef.innerHTML = errorMessage;
+    contentRef.innerHTML = "<p>An error occurred, please try again.</p>";
     return;
   }
 
@@ -86,33 +120,65 @@ async function renderPost(id) {
 
   const postBody = md.render(body);
   contentRef.innerHTML += postBody;
-  
   return;
 }
 
 /**
- * Render grid on top of post 
+ * Render grid overlay
  */
 function renderGrid() {
   const grid = document.createElement("div");
-  grid.className = "grid"
+  grid.className = "grid";
   contentRef.appendChild(grid);
   return;
 }
 
-
 /**
- * Debugging 
+ * Get current path from hash
+ *
+ * @returns path string
  */
-async function main() {
-  const index = await fetchIndex();
-  console.log(index);
-
-  await renderPost("0000");
-
-  renderGrid();
-
-  return;
+function getPath() {
+  return location.hash.slice(1) || "/";
 }
 
-main();
+/**
+ * Match URL path to route handler
+ *
+ * @param path - URL pathname
+ * @returns handler function or null
+ */
+function matchRoute(path) {
+  if (path === "/" || path === "") return () => routes["/"]();
+
+  const postMatch = path.match(/^\/posts\/([^/]+)$/);
+  if (postMatch) return () => routes["/posts/:id"](postMatch[1]);
+
+  return null;
+}
+
+/**
+ * Navigate to a path
+ *
+ * @param path - URL pathname
+ */
+async function navigate(path) {
+  const handler = matchRoute(path);
+  if (handler) {
+    await handler();
+    renderGrid();
+  } else {
+    contentRef.innerHTML = "<p>Page not found.</p>";
+  }
+}
+
+// hash change listener
+window.addEventListener("hashchange", () => navigate(getPath()));
+
+// make header a home link
+headerRef.addEventListener("click", () => {
+  location.hash = "#/";
+});
+
+// initial route on page load
+navigate(getPath());
