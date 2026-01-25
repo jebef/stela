@@ -1,9 +1,7 @@
 :root {
   --font-name: 'IBM Plex Mono', monospace;
-  --font-sm: 16px;
-  --font-md: 32px;
-  --font-lg: 48px;
-
+  --font-size: 16px;
+  --line-height: 1.25;
   --max-width: 900px;
 }
 
@@ -13,28 +11,46 @@ body {
   height: 100vh;
   background-color: white;
   font-family: var(--font-name);
-  font-size: var(--font-sm);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-size: var(--font-size);
 }
 
 .sizer {
   max-width: var(--max-width);
-  background-color: red;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.main {
+  width: round(down, 100%, 1ch);
+  min-height: 100%;
+  border-left: thin solid black;
+  padding-left: 2ch;
+  padding-bottom: 3em;
+}
+
+.header {
+  width: 120vw;
+  line-height: 1;
+  margin-left: calc(-60vw + 50%);
+  padding-left: calc(60vw - 50%);
+  padding-top: 8vh;
+  padding-bottom: 2ch;
+  border-bottom: thin solid black;
 }
 
 .content {
-  width: round(down, 100%, 1ch);
-  /* padding: 0 2ch;  */
-  background-color: aqua;
+  padding-top: 2ch;
 }
 
-h1 {
-  font-size: var(--font-lg);
+@media (max-width: 900px) {
+  .main {
+    border: none;
+  }
 }
 
-h2 {
-  font-size: var(--font-md);
-}
-
-h3, h4, h5, h6 {
-  font-size: var(--font-sm);
-}
