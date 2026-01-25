@@ -2,7 +2,9 @@
   --font-name: 'IBM Plex Mono', monospace;
   --font-size: 16px;
   --line-height: 1.25;
+  --cell-height: calc(var(--font-size) * var(--line-height));
   --max-width: 900px;
+  --border-size: 1px;
 }
 
 html,
@@ -16,14 +18,6 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  font-size: var(--font-size);
-}
-
-img {
-  max-height: 90vh;
-}
-
 .sizer {
   max-width: var(--max-width);
   height: 100%;
@@ -32,12 +26,23 @@ img {
 
 .main {
   --width-discrete: round(down, 100%, 1ch);
+  --main-padding-right: calc(2ch - (100% - var(--width-discrete)));
   width: var(--width-discrete);
   min-height: 100%;
-  border-left: thin solid black;
-  padding-left: 2ch;
-  padding-right: calc(2ch - (100% - var(--width-discrete)));
+  border-left: var(--border-size) solid black;
+  /* padding-right: var(--main-padding-right); */
   padding-bottom: 3em;
+}
+
+.grid {
+  display: grid; 
+  position: absolute;
+  top: 2ch;
+  left: 0;
+  grid-template-rows: repeat(auto-fill, var(--cell-height));
+  grid-template-columns: repeat(auto-fill, 1ch);
+  width: 100%;
+  height: 100%;
 }
 
 .header {
@@ -45,19 +50,54 @@ img {
   line-height: 1;
   font-weight: 700;
   margin-left: calc(-60vw + 50%);
-  padding-left: calc(60vw - 50%);
-  padding-top: 8vh;
+  padding-left: calc(60vw - 50% + 2ch);
+  padding-top: round(down, 8vh, 1ch);
   padding-bottom: 2ch;
-  border-bottom: thin solid black;
+  border-bottom: var(--border-size) solid black;
 }
 
 .content {
-  padding-top: 2ch;
+  width: calc(100% + var(--border-size));
+  position: relative;
+  padding: 2ch;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: var(--font-size);
+}
+
+p {
+  text-align: justify;
+  padding-bottom: var(--cell-height);
+}
+
+img {
+  max-height: round(up, 90vh, var(--cell-height));
+
+}
+
+p img {
+  padding: var(--cell-height) 1ch;
+  border: var(--border-size) solid black;
+}
+
+hr {
+  all: unset;
+  display: block;
+  width: calc(2ch + 100%);
+  height: var(--border-size);
+  margin: -2ch;
+  margin-block: calc((var(--line-height) * var(--font-size) - var(--border-size)) / 2);
+  background-color: black;
 }
 
 @media (max-width: 900px) {
   .main {
     border: none;
+  }
+
+  hr {
+    width: 110%;
   }
 }
 

@@ -55,6 +55,9 @@ async function main() {
   const postPath = `./../posts/${index.posts[0].id}/`;
   html = html.replace(/src="\.\/([^"]+)"/g, `src="${postPath}$1"`);
   content.innerHTML = html;
+  const grid = document.createElement('div');
+  grid.className = 'grid'
+  content.appendChild(grid);
 
   return;
 }

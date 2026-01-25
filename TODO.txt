@@ -3,3 +3,6 @@ Post index page idea - hero image rendered in ascii. Need to write a simple imag
 render low res image to a hidden canvas, capture image data, use image data to render as ascii. 
 Add on-hover effect, characters change color in a natural wave-like motion. 
 
+2026-01-24
+Write custom text justify tool to use discrete numbers of whitespace. 
+Add js image dim tool to snap image dims to grid while maintaining original aspect ratio. 
