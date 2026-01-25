@@ -20,6 +20,10 @@ h1, h2, h3, h4, h5, h6, p {
   font-size: var(--font-size);
 }
 
+img {
+  max-height: 90vh;
+}
+
 .sizer {
   max-width: var(--max-width);
   height: 100%;
@@ -27,16 +31,19 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .main {
-  width: round(down, 100%, 1ch);
+  --width-discrete: round(down, 100%, 1ch);
+  width: var(--width-discrete);
   min-height: 100%;
   border-left: thin solid black;
   padding-left: 2ch;
+  padding-right: calc(2ch - (100% - var(--width-discrete)));
   padding-bottom: 3em;
 }
 
 .header {
   width: 120vw;
   line-height: 1;
+  font-weight: 700;
   margin-left: calc(-60vw + 50%);
   padding-left: calc(60vw - 50%);
   padding-top: 8vh;
