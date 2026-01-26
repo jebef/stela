@@ -7,7 +7,7 @@ author: Wyatt Jebef
 # Hello World
 ---
 
-![bernal rocket](/posts/0000/images/coffee.webp)
+![coffee](./posts/0000/images/coffee.webp)
 
 Dear future self, enjoy.
 
