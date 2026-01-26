@@ -18,7 +18,7 @@ const routes = {
  */
 async function fetchIndex() {
   try {
-    const res = await fetch("./../posts/index.json");
+    const res = await fetch("/posts/index.json");
     if (!res.ok) {
       throw new Error(`HTTP Error: ${res.status}`);
     }
