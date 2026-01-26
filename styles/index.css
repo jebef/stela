@@ -7,7 +7,8 @@
   --border-size: 1px;
 
   --ease-in: .3s;
-  --ease-out: 1.5s;
+  --ease-out: .9s;
+  --link-color: blueviolet;
 }
 
 html,
@@ -30,13 +31,10 @@ body {
 }
 
 .main {
-  --width-discrete: round(down, 100%, 1ch);
-  --main-padding-right: calc(2ch - (100% - var(--width-discrete)));
-  width: var(--width-discrete);
+  width: round(down, 100%, 1ch);
   min-height: 100%;
   border-left: var(--border-size) solid black;
-  /* padding-right: var(--main-padding-right); */
-  padding-bottom: 3em;
+  padding-bottom: calc(3 * var(--cell-height));
 }
 
 .grid {
@@ -63,7 +61,7 @@ body {
 }
 
 .header:hover {
-  color: blueviolet;
+  color: var(--link-color);
   transition: color ease-in var(--ease-in);
 }
 
@@ -79,10 +77,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-size: var(--font-size);
+  padding-top: var(--cell-height);
 }
 
 p {
-  /* text-align: justify; */
   padding-bottom: var(--cell-height);
 }
 
@@ -90,10 +88,9 @@ img {
   max-height: round(down, 90vh, var(--cell-height));
 }
 
-/* p img {
-  padding: var(--cell-height) 1ch;
-  border: var(--border-size) solid black;
-} */
+p img {
+  padding: var(--cell-height) 0;
+}
 
 hr {
   all: unset;
@@ -118,8 +115,12 @@ a {
 
 a:hover {
   cursor: crosshair;
-  color: blueviolet;
+  color: var(--link-color);
   transition: color ease-in var(--ease-in);
+}
+
+hr p img {
+  padding-top: var(--cell-height);
 }
 
 @media (max-width: 900px) {

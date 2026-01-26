@@ -1,28 +1,14 @@
 ---
 title: Hello World
-date: 2026-01-24
-author: Wyatt
+date: 2026-01-25
+author: Wyatt Jebef 
 ---
 
 # Hello World
 ---
 
-This is a preliminary test post. Here is a long ramble and a bunch of text. This is going to be a test of the text justify style rule. Aye yo!! Wassup dawg. Here's some **bold** and *italic* text.
+![bernal rocket](/posts/0000/images/coffee.webp)
 
-## All headings should be treated the same
----
+Dear future self, enjoy.
 
-And a [link](https://wyatt-jebef.com/).
-
-![aud](/posts/0000/images/aud.jpg)
-
-This is a preliminary test post. Here is a long ramble and a bunch of text. This is going to be a test of the text justify style rule. Aye yo!! Wassup dawg. Here's some **bold** and *italic* text.
-
-## All headings should be treated the same
----
-
-This is a preliminary test post. Here is a long ramble and a bunch of text. This is going to be a test of the text justify style rule. Aye yo!! Wassup dawg. Here's some **bold** and *italic* text.
-
-## All headings should be treated the same
----
 

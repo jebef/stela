@@ -87,6 +87,7 @@ async function renderIndex() {
   data.posts.forEach(post => {
     const item = document.createElement("li");
     const link = document.createElement("a");
+    link.style.textDecoration = "none";
     link.href = `#/posts/${post.id}`;
     link.textContent = post.title;
     item.appendChild(link);
