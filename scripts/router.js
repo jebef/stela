@@ -51,22 +51,49 @@ async function fetchPost(id) {
 }
 
 /**
- * Parse post metadata and content 
- * 
- * @param markdown - md file 
- * @returns post metadata and body 
+ * Parse post metadata and content
+ *
+ * @param markdown - md file
+ * @returns post metadata and body
  */
 function parsePost(markdown) {
   const match = markdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return { meta: {}, content: markdown };
-  
+
   const meta = {};
   match[1].split("\n").forEach(line => {
     const [key, ...rest] = line.split(":");
     if (key) meta[key.trim()] = rest.join(":").trim();
   });
-  
+
   return { meta, body: match[2] };
+}
+
+/**
+ * Rewrite relative paths in markdown to be relative to post directory
+ *
+ * @param markdown - markdown content
+ * @param postId - post identifier for path prefix
+ * @returns markdown with rewritten paths
+ */
+function rewritePaths(markdown, postId) {
+  const basePath = `./posts/${postId}/`;
+
+  // match markdown images and links: ![alt](path) or [text](path)
+  return markdown.replace(
+    /(!?\[[^\]]*\]\()([^)]+)(\))/g,
+    (match, prefix, path, suffix) => {
+      // skip absolute URLs, hashes, and protocol-relative URLs
+      if (path.startsWith('/') ||
+          path.startsWith('#') ||
+          path.startsWith('http://') ||
+          path.startsWith('https://') ||
+          path.startsWith('//')) {
+        return match;
+      }
+      return prefix + basePath + path + suffix;
+    }
+  );
 }
 
 /**
@@ -119,7 +146,8 @@ async function renderPost(id) {
   postDate.textContent = meta.date;
   contentRef.appendChild(postDate);
 
-  const postBody = md.render(body);
+  const rewrittenBody = rewritePaths(body, id);
+  const postBody = md.render(rewrittenBody);
   contentRef.innerHTML += postBody;
   return;
 }

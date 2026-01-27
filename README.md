@@ -17,7 +17,10 @@ Hash routing, simple styling, responsive layouts.
   python3 scripts/new-post.py
 ```
 2. Find your new post in the `posts` folder
-3. Edit `index.md`, add assets to `media`
+3. Edit `index.md`, add assets to `media` using relative paths: 
+```md
+  ![morning coffee](media/coffee.jpg)
+```
 4. Push to `main`
 
 The post index updates automatically via GitHub Actions.
