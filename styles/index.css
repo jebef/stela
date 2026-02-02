@@ -6,6 +6,7 @@
   --cell-height: calc(var(--font-size) * var(--line-height));
   --max-width: 900px;
   --border-size: 1px;
+  --img-max-height: round(down, 90vh, var(--cell-height));
 
   --ease-in: .3s;
   --ease-out: .9s;
@@ -83,7 +84,7 @@ p {
 }
 
 img {
-  max-height: round(down, 90vh, var(--cell-height));
+  max-height: var(--img-max-height)
 }
 
 p img {
@@ -103,6 +104,13 @@ hr {
 ul {
   all: unset;
   list-style-type: none;
+}
+
+ul:has(li img) {
+  max-height: var(--img-max-height);
+  display: flex;
+  gap: 1ch;
+  padding: var(--cell-height) 0;
 }
 
 a {

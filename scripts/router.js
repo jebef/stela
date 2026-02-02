@@ -166,29 +166,12 @@ async function renderPost(id) {
 }
 
 /**
- * Snap images to grid 
- */
-function snapImages() {
-  const { width: cw, height: ch } = getGridDims();
-  document.querySelectorAll(".content img").forEach(img =>
-    img.onload = () => {
-      img.style.width = Math.round(img.width / cw) * cw + "px";
-      img.style.height = Math.round(img.height / ch) * ch + "px";
-    }
-  );
-  console.log(`Snapped! CW: ${cw}, CH: ${ch}`);
-}
-
-/**
  * Render grid overlay
  */
 function renderGrid() {
   const grid = document.createElement("div");
   grid.className = "grid";
   contentRef.appendChild(grid);
-
-  snapImages();
-  
   return;
 }
 
