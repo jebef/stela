@@ -6,6 +6,7 @@
   --cell-height: calc(var(--font-size) * var(--line-height));
   --max-width: 900px;
   --border-size: 1px;
+
   --img-max-height: round(down, 90vh, var(--cell-height));
 
   --ease-in: .3s;
@@ -16,7 +17,7 @@
 html,
 body {
   width: 100vw;
-  background-color: white;
+  background-color:white;
   font-family: var(--font-name);
   font-size: var(--font-size);
   line-height: var(--line-height);
@@ -80,15 +81,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
+  min-height: 0;
   padding-bottom: var(--cell-height);
+  text-align: justify;
 }
 
+
+/*--- IMAGES ---*/
 img {
-  max-height: var(--img-max-height)
+  max-height: var(--img-max-height);
 }
 
-p img {
-  padding: var(--cell-height) 0;
+p:has(.img-wrap) {
+  width: fit-content;
+  font-size: 0;
+  line-height: 0;
+  padding: 0;
+}
+
+.img-wrap {
+  position: relative;
+}
+
+.img-wrap__clip {
+  overflow: hidden;
+}
+
+.img-wrap__cap {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: round(up, 33%, var(--cell-width));
+  font-size: var(--font-size);
+  line-height: var(--line-height); 
+  text-align: justify;
+  text-align-last: right;
+  border-bottom: var(--border-size) solid black;
+  border-right: var(--border-size) solid black;
+  padding-right: var(--cell-width);
 }
 
 hr {
@@ -101,16 +131,24 @@ hr {
   background-color: black;
 }
 
+hr:has(+ p .img-wrap) {
+  margin-bottom: var(--cell-height);
+}
+
+hr:has(+ ul li .img-wrap) {
+  margin-bottom: var(--cell-height);
+}
+
 ul {
   all: unset;
   list-style-type: none;
 }
 
-ul:has(li img) {
+ul:has(li .img-wrap) {
+  max-width: 100%;
   max-height: var(--img-max-height);
   display: flex;
   gap: 1ch;
-  padding: var(--cell-height) 0;
 }
 
 a {
