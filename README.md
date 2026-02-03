@@ -77,17 +77,19 @@ would like to pull a specific update, I recommend taking the following steps:
 ├── index.html              # Entry point
 ├── posts/
 │   ├── index.json          # Auto-generated post index
-|   ├── 0000/               # Individual posts
+│   ├── 0000/               # Individual posts
 │   └── 0001/               
-|       ├── media/          # Post assets
-|       └── index.md        # Post content/structure
-|   
+│       ├── media/          # Post assets
+│       └── index.md        # Post content/structure
+│  
 ├── scripts/
-|   ├── generate-index.py   # Index generator (runs via GitHub Actions)
+│   ├── generate-index.py   # Index generator (runs via GitHub Actions)
 │   ├── markdown-it.min.js  # Markdown parser
-|   ├── new-post.py         # Post initializer
-│   └── router.js           # Client-side routing
-|
+│   ├── new-post.py         # Post initializer
+│   ├── render.py           # Render logic
+│   ├── router.js           # Client-side routing
+│   └── stela.js            # Custom render rules for parser
+│
 └── styles/                 # CSS
 ```
 
